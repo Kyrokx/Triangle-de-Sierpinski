@@ -19,9 +19,8 @@ p_3 = pygame.math.Vector2(height / 2, width * (1 / 5))
 
 points = [p_1, p_2, p_3]
 
-
-def milieu(start_x, end_x, start_y, end_y):
-    return (start_x + end_x) * reduction, (start_y + end_y) * reduction
+"""def milieu(start_x, end_x, start_y, end_y):
+    return (start_x + end_x) * reduction, (start_y + end_y) * reduction"""
 
 
 def rdm():
@@ -32,9 +31,14 @@ def triangle(pos_1, pos_2, pos_3, i):
     if i == 0:
         return
     else:
-        pos_p_1 = pygame.math.Vector2(milieu(pos_1.x, pos_2.x, pos_1.y, pos_2.y))
+        """pos_p_1 = pygame.math.Vector2(milieu(pos_1.x, pos_2.x, pos_1.y, pos_2.y))
         pos_p_2 = pygame.math.Vector2(milieu(pos_2.x, pos_3.x, pos_2.y, pos_3.y))
-        pos_p_3 = pygame.math.Vector2(milieu(pos_3.x, pos_1.x, pos_3.y, pos_1.y))
+        pos_p_3 = pygame.math.Vector2(milieu(pos_3.x, pos_1.x, pos_3.y, pos_1.y))"""
+
+        pos_p_1 = pygame.math.Vector2((pos_1 + pos_2) * reduction)
+        pos_p_2 = pygame.math.Vector2((pos_2 + pos_3) * reduction)
+        pos_p_3 = pygame.math.Vector2((pos_3 + pos_1) * reduction)
+
         # pygame.draw.polygon(screen, pygame.Color(rdm(), rdm(), rdm()), [pos_1, pos_2, pos_3], width=1)
         pygame.draw.polygon(screen, "white", [pos_1, pos_2, pos_3], width=1)
         triangle(pos_3, pos_p_2, pos_p_3, i - 1)
